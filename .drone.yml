@@ -31,7 +31,7 @@ steps:
       NPM_CONFIG_LOGLEVEL: error
 
   - name: publish
-    image: plugins/git-action
+    image: thegeeklab/drone-git-action
     settings:
       actions:
         - commit
@@ -40,11 +40,8 @@ steps:
       author_name: thegeeklab-bot
       branch: main
       message: "[skip ci] automated readme update"
-      netrc_machine: github.com
       netrc_password:
         from_secret: github_token
-      netrc_username:
-        from_secret: github_username
     when:
       ref:
         exclude:
@@ -58,6 +55,6 @@ trigger:
 
 ---
 kind: signature
-hmac: c82b49d48e443a7ddea893c67ee4678aea311de03d9c89680bfbf714643f4290
+hmac: e661dbf9e5a9be42b870964c3ba1ccc785b33ef47f665e1ac9bae5ec9782ef64
 
 ...
