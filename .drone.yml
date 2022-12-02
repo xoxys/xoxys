@@ -33,12 +33,11 @@ steps:
   - name: publish
     image: thegeeklab/drone-git-action
     settings:
-      actions:
+      action:
         - commit
         - push
       author_email: bot@thegeeklab.de
       author_name: thegeeklab-bot
-      branch: main
       message: "[skip ci] automated readme update"
       netrc_password:
         from_secret: github_token
@@ -55,6 +54,6 @@ trigger:
 
 ---
 kind: signature
-hmac: e661dbf9e5a9be42b870964c3ba1ccc785b33ef47f665e1ac9bae5ec9782ef64
+hmac: 2cc596eb98ed7480d88c09bb196c888df0523655f5696d546cbca42b99171a82
 
 ...
