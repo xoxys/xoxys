@@ -35,6 +35,9 @@ steps:
       message: "[skip ci] automated readme update"
       netrc_password:
         from_secret: github_token
+      commands:
+        - echo $PLUGIN_AUTHOR_EMAIL
+        - echo $PLUGIN_ACTION
     when:
       - event: [push, manual]
         branch:
