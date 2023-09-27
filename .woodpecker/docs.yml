@@ -1,7 +1,7 @@
 ---
 when:
   - event: [pull_request, tag]
-  - event: [push, manual]
+  - event: [push, manual, cron]
     branch:
       - ${CI_REPO_DEFAULT_BRANCH}
 
@@ -36,6 +36,6 @@ steps:
       netrc_password:
         from_secret: github_token
     when:
-      - event: [push, manual]
+      - event: [push, manual, cron]
         branch:
           - ${CI_REPO_DEFAULT_BRANCH}
