@@ -6,17 +6,17 @@ when:
       - ${CI_REPO_DEFAULT_BRANCH}
 
 steps:
-  generate:
+  - name: generate
     image: docker.io/library/golang
     commands:
       - go run cmd/generate.go
 
-  markdownlint:
+  - name: markdownlint
     image: quay.io/thegeeklab/markdownlint-cli
     commands:
       - markdownlint 'README.md'
 
-  spellcheck:
+  - name: spellcheck
     image: quay.io/thegeeklab/alpine-tools
     commands:
       - spellchecker --files 'content/**/*.md' 'README.md' -d .dictionary -p spell indefinite-article syntax-urls
@@ -24,7 +24,7 @@ steps:
       FORCE_COLOR: "true"
       NPM_CONFIG_LOGLEVEL: error
 
-  publish:
+  - name: publish
     image: quay.io/thegeeklab/wp-git-action
     settings:
       action:
