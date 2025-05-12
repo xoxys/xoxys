@@ -1,6 +1,6 @@
 module github.com/xoxys/xoxys
 
-go 1.24.2
+go 1.24.3
 
 require github.com/mmcdole/gofeed v1.3.0
 
