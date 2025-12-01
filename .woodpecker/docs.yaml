@@ -11,19 +11,6 @@ steps:
     commands:
       - go run cmd/generate.go
 
-  - name: markdownlint
-    image: quay.io/thegeeklab/markdownlint-cli
-    commands:
-      - markdownlint 'README.md'
-
-  - name: spellcheck
-    image: quay.io/thegeeklab/alpine-tools
-    commands:
-      - spellchecker --files 'content/**/*.md' 'README.md' -d .dictionary -p spell indefinite-article syntax-urls
-    environment:
-      FORCE_COLOR: "true"
-      NPM_CONFIG_LOGLEVEL: error
-
   - name: publish
     image: quay.io/thegeeklab/wp-git-action
     settings:
@@ -39,3 +26,6 @@ steps:
       - event: [push, manual, cron]
         branch:
           - ${CI_REPO_DEFAULT_BRANCH}
+
+depends_on:
+  - static

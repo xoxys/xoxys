@@ -17,7 +17,7 @@ type TmplVars struct {
 
 // Using the init function to make sure the template is only parsed once in the program
 func init() {
-	// template.Must takes the reponse of template.ParseFiles and does error checking
+	// template.Must takes the response of template.ParseFiles and does error checking
 	tmpl = template.Must(template.ParseFiles("src/readme.tmpl"))
 }
 
@@ -33,7 +33,12 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	defer output.Close()
+	defer func() {
+		err := output.Close()
+		if err != nil {
+			log.Fatalln(err)
+		}
+	}()
 
 	vars := TmplVars{
 		FeedItems: readFeed(),
