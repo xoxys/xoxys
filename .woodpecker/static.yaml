@@ -1,0 +1,33 @@
+---
+when:
+  - event: [pull_request, tag]
+  - event: [push, manual]
+    branch:
+      - ${CI_REPO_DEFAULT_BRANCH}
+
+steps:
+  - name: generate
+    image: docker.io/library/golang:1.25.1
+    commands:
+      - go run cmd/generate.go
+
+  - name: markdownlint
+    image: quay.io/thegeeklab/markdownlint-cli
+    depends_on: [generate]
+    commands:
+      - markdownlint 'README.md' 'CONTRIBUTING.md'
+
+  - name: spellcheck
+    depends_on: [generate]
+    image: ghcr.io/streetsidesoftware/cspell
+    commands:
+      - cspell-cli lint . --gitignore --color
+
+  - name: link-validation
+    image: docker.io/lycheeverse/lychee
+    depends_on: [generate]
+    commands:
+      - lychee --no-progress --format detailed README.md
+    environment:
+      GITHUB_TOKEN:
+        from_secret: github_token_ro
