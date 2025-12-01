@@ -1,0 +1,33 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "dictionaries": ["en_us", "go"],
+  "words": [
+    "Kaussow",
+    "thegeeklab",
+    "xoxys",
+    "rknet",
+    "univention",
+    "backblaze",
+    "tradfri",
+    "opensearch",
+    "mmcdole",
+    "gofeed",
+    "tmpl"
+  ],
+  "ignorePaths": [
+    ".woodpecker",
+    ".cspell.json",
+    ".git/**/*",
+    ".gitignore",
+    ".vscode",
+    "Makefile",
+    ".golangci.yaml",
+    ".golangci.yml",
+    "*.svg",
+    "go.mod",
+    // generated
+    "go.sum"
+  ],
+  "ignoreRegExpList": ["&\\S+;", "{{<.+>}}", "color\\:.*"]
+}
