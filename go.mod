@@ -2,7 +2,7 @@ module github.com/xoxys/xoxys
 
 go 1.26.6
 
-require github.com/mmcdole/gofeed v1.4.1
+require github.com/mmcdole/gofeed v1.4.2
 
 require (
 	github.com/mmcdole/goxpp/v2 v2.0.0 // indirect
